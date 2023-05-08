@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.view.puzzles.PuzzleDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ablAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.MyApplication.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctlToolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/ivPuzzle"
+                tools:src="@tools:sample/avatars"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.MyApplication.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--<com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ablAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.MyApplication.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctlToolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/primary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="Nombre del puzzle">
+
+            <ImageView
+                android:id="@+id/ivPuzzle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.MyApplication.PopupOverlay" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:tint="@color/white"
+        app:backgroundTint="@color/accent"
+        app:layout_anchor="@id/ablAppBar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_not_favorite" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="30dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBrand"
+                android:layout_width="147dp"
+                android:layout_height="136dp"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/cvPieces"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+
+                    <ImageView
+                        android:id="@+id/ivBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="MARCA"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivBrand"
+                        app:layout_constraintStart_toEndOf="@+id/ivBrand"
+                        app:layout_constraintTop_toTopOf="@+id/ivBrand" />
+
+                    <TextView
+                        android:id="@+id/tvInfoBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/ivBrand"
+                        app:layout_constraintTop_toBottomOf="@+id/ivBrand"
+                        tools:text="Ravensburguer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPieces"
+                android:layout_width="147dp"
+                android:layout_height="136dp"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cvBrand"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+
+                    <ImageView
+                        android:id="@+id/ivPieces"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_puzzle_piece"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitlePressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="PIEZAS"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivPieces"
+                        app:layout_constraintStart_toEndOf="@+id/ivPieces"
+                        app:layout_constraintTop_toTopOf="@+id/ivPieces" />
+
+                    <TextView
+                        android:id="@+id/tvInfoPieces"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/ivPieces"
+                        app:layout_constraintTop_toBottomOf="@+id/ivPieces"
+                        tools:text="300" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCollection"
+                android:layout_width="147dp"
+                android:layout_height="136dp"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/cvReferenceNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvBrand">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+
+                    <ImageView
+                        android:id="@+id/ivCollection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_person"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleCollection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="COLECIÓN"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivCollection"
+                        app:layout_constraintStart_toEndOf="@+id/ivCollection"
+                        app:layout_constraintTop_toTopOf="@+id/ivCollection" />
+
+                    <TextView
+                        android:id="@+id/tvInfoCollection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/ivCollection"
+                        app:layout_constraintTop_toBottomOf="@+id/ivCollection"
+                        tools:text="Pepito perez" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvReferenceNumber"
+                android:layout_width="147dp"
+                android:layout_height="136dp"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cvCollection"
+                app:layout_constraintTop_toBottomOf="@+id/cvPieces">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+
+                    <ImageView
+                        android:id="@+id/ivReferenceNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitleReferenceNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+
+                        android:text="Nº REFERENCIA"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivReferenceNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivReferenceNumber"
+                        app:layout_constraintTop_toTopOf="@+id/ivReferenceNumber" />
+
+                    <TextView
+                        android:id="@+id/tvInfoReferenceNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/ivReferenceNumber"
+                        app:layout_constraintTop_toBottomOf="@+id/ivReferenceNumber"
+                        tools:text="491984572" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCollection">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+                    <ImageView
+                        android:id="@+id/ivPhoto"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_info"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Información personal"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivPhoto"
+                        app:layout_constraintStart_toEndOf="@+id/ivPhoto"
+                        app:layout_constraintTop_toTopOf="@+id/ivPhoto" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtName">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:gravity="center|start">
+
+                            <ImageView
+                                android:id="@+id/ivBoughtDay"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_calendar"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivPhoto" />
+
+                            <TextView
+                                android:id="@+id/txtBoughtDay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:textSize="16sp"
+                                tools:text="Comprado el 10/05/2022" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:gravity="center|start">
+
+                            <ImageView
+                                android:id="@+id/ivLentTo"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_person"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivBoughtDay" />
+
+                            <TextView
+                                android:id="@+id/txtLentTo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:textSize="16sp"
+
+                                tools:text="Prestado a Julia" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:gravity="center|start">
+
+                            <ImageView
+                                android:id="@+id/ivBoughtLocation"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_location"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivLentTo" />
+
+                            <TextView
+                                android:id="@+id/txtBoughtLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:textSize="16sp"
+                                tools:text="Comprado en Salamanca" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:gravity="center|start">
+
+                            <ImageView
+                                android:id="@+id/ivDoneIn"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_timer"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivBoughtLocation" />
+
+                            <TextView
+                                android:id="@+id/txtDoneIn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:textSize="16sp"
+                                tools:text="Hecho en 03:23 h" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="5dp"
+                            android:gravity="center|start">
+
+                            <ImageView
+                                android:id="@+id/ivComments"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_comment"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ivDoneIn" />
+
+                            <TextView
+                                android:id="@+id/txtComments"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="7dp"
+                                android:textSize="16sp"
+                                tools:text="Las esquinas estan tocadas" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfMarca"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Marca"
+                 app:layout_constraintEnd_toStartOf="@+id/tfPiezas"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:startIconDrawable="@drawable/ic_label">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfMarcaContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="text"/>
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfPiezas"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="150dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Piezas"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:startIconDrawable="@drawable/ic_puzzle_piece">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfPiezasContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="number"/>
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfColeccion"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="150dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Colección"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@id/tfMarca"
+                 app:startIconDrawable="@drawable/ic_puzzle_piece">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfColeccionContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="text" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfNReferencia"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Nº referencia"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/tfColeccion"
+                 app:layout_constraintTop_toBottomOf="@+id/tfPiezas"
+                 app:startIconDrawable="@drawable/ic_number">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfNReferenciaContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="number" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfFechaCompra"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="200dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+
+                 android:hint="Fecha compra"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/tfNReferencia"
+                 app:startIconDrawable="@drawable/ic_calendar">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfFechaCompraContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:clickable="false"
+                     android:focusable="false" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfLugarCompra"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Lugar compra"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toStartOf="@+id/tfFechaCompra"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/tfColeccion"
+                 app:startIconDrawable="@drawable/ic_location">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfLugarCompraContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="text" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.checkbox.MaterialCheckBox
+                 android:id="@+id/chkPrestado"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:text="Prestado"
+                 android:textSize="20sp"
+                 app:layout_constraintBottom_toBottomOf="@+id/tfPrestadoA"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="@+id/tfPrestadoA" />
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfPrestadoA"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Prestado a"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/chkPrestado"
+                 app:layout_constraintTop_toBottomOf="@+id/tfFechaCompra"
+                 app:startIconDrawable="@drawable/ic_person">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfPrestadoAContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="text" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfHechoEn"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="200dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Hecho en"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/chkPrestado"
+                 app:startIconDrawable="@drawable/ic_timer">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfHechoEnContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:clickable="false"
+                     android:focusable="false" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/tfComentario"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="15dp"
+                 android:hint="Comentario"
+                 app:endIconMode="clear_text"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/tfHechoEn"
+                 app:startIconDrawable="@drawable/ic_comment">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/tfComentarioContent"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="text" />
+
+             </com.google.android.material.textfield.TextInputLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!--    <ImageView
+            android:id="@+id/ivPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_photo" />
+
+        <TextView
+            android:id="@+id/labelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nombre:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/ivPhoto" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelName"
+            app:layout_constraintStart_toEndOf="@+id/labelName"
+            app:layout_constraintTop_toTopOf="@+id/labelName"
+            tools:text="Flip" />
+
+        <TextView
+            android:id="@+id/labelBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Marca:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelName" />
+
+        <TextView
+            android:id="@+id/txtBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelBrand"
+            app:layout_constraintStart_toEndOf="@+id/labelBrand"
+            app:layout_constraintTop_toTopOf="@+id/labelBrand"
+            tools:text="Educa" />
+
+        <TextView
+            android:id="@+id/labelComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Comentario:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelBuyDay" />
+
+        <TextView
+            android:id="@+id/txtComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelComment"
+            app:layout_constraintStart_toEndOf="@+id/labelComment"
+            app:layout_constraintTop_toTopOf="@+id/labelComment"
+            tools:text="Piezas muy endebles" />
+
+        <TextView
+            android:id="@+id/labelLentTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Prestado a:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelBuyLocation" />
+
+        <TextView
+            android:id="@+id/txtLentTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelLentTo"
+            app:layout_constraintStart_toEndOf="@+id/labelLentTo"
+            app:layout_constraintTop_toTopOf="@+id/labelLentTo"
+            tools:text="Julia" />
+
+        <TextView
+            android:id="@+id/labelPieces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Piezas:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelBrand" />
+
+        <TextView
+            android:id="@+id/txtPieces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelPieces"
+            app:layout_constraintStart_toEndOf="@+id/labelPieces"
+            app:layout_constraintTop_toTopOf="@+id/labelPieces"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/labelCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Colección:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelPieces" />
+
+        <TextView
+            android:id="@+id/txtCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelCollection"
+            app:layout_constraintStart_toEndOf="@+id/labelCollection"
+            app:layout_constraintTop_toTopOf="@+id/labelCollection"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/labelReferenceNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nº referencia:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelCollection" />
+
+        <TextView
+            android:id="@+id/txtReferenceNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelReferenceNumber"
+            app:layout_constraintStart_toEndOf="@+id/labelReferenceNumber"
+            app:layout_constraintTop_toTopOf="@+id/labelReferenceNumber"
+            tools:text="4234546436" />
+
+        <TextView
+            android:id="@+id/labelBuyLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Lugar de compra:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelReferenceNumber" />
+
+        <TextView
+            android:id="@+id/txtBuyLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelBuyLocation"
+            app:layout_constraintStart_toEndOf="@+id/labelBuyLocation"
+            app:layout_constraintTop_toTopOf="@+id/labelBuyLocation"
+            tools:text="Salamanca" />
+
+        <TextView
+            android:id="@+id/labelBuyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="17sp"
+            android:text="Día de compra:"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelLentTo" />
+
+        <TextView
+            android:id="@+id/txtBuyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelBuyDay"
+            app:layout_constraintStart_toEndOf="@+id/labelBuyDay"
+            app:layout_constraintTop_toTopOf="@+id/labelBuyDay"
+            tools:text="Salamanca" />
+
+        <TextView
+            android:id="@+id/labelDoneIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hecho en:"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelComment" />
+
+        <TextView
+            android:id="@+id/txtDoneIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelDoneIn"
+            app:layout_constraintStart_toEndOf="@+id/labelDoneIn"
+            app:layout_constraintTop_toTopOf="@+id/labelDoneIn"
+            tools:text="Salamanca" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

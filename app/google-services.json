@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961448465653",
+    "project_id": "puzzleteca-app",
+    "storage_bucket": "puzzleteca-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961448465653:android:66acbfa9f2bf584d0d21bc",
+        "android_client_info": {
+          "package_name": "com.pablo.puzzleteca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961448465653-pcdd51aec6voi8mm3njrm0hqknftpmrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxkU6lqpV4g750hpNhTLgAekYSYy82eAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961448465653-pcdd51aec6voi8mm3njrm0hqknftpmrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
